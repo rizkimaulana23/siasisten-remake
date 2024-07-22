@@ -89,6 +89,8 @@ public class HomeController {
         model.addAttribute("list", homeList);
 
         model.addAttribute("type", session.getAttribute("type").toString());
+
+
         if (session.getAttribute("type").equals("mahasiswa")) {
             return "home";
         } else {

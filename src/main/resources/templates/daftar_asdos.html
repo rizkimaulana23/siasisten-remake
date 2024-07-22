@@ -44,6 +44,12 @@
           </tr>
           </tbody>
       </table>
+      <div th:if="${ipkError}">
+          <p th:text="${ipkError}"></p>
+      </div>
+      <div th:if="${sksError}">
+          <p th:text="${sksError}"></p>
+      </div>
       <div>
           <button type="submit">Daftar</button>
       </div>

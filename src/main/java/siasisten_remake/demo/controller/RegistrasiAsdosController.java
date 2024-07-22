@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import siasisten_remake.demo.entity.LmkMahasiswa;
 import siasisten_remake.demo.entity.LowonganMataKuliah;
 import siasisten_remake.demo.entity.Mahasiswa;
@@ -68,8 +69,23 @@ public class RegistrasiAsdosController {
     public String daftarAsdosPost(
             @PathVariable String kode_lmk,
             @ModelAttribute LmkMahasiswa lmkMahasiswa,
-            HttpSession session
+            HttpSession session,
+            RedirectAttributes redirectAttributes
     ) {
+        // validation IPK dan SKS
+        boolean isRedirectError = false;
+        if (lmkMahasiswa.getIpk() > 4 || lmkMahasiswa.getIpk() < 0){
+            redirectAttributes.addFlashAttribute("ipkError", "IPK kamu tidak boleh lebih dari 4 atau kurang dari 0");
+            isRedirectError = true;
+        }
+        if (lmkMahasiswa.getSks() > 24 || lmkMahasiswa.getSks() < 0){
+            redirectAttributes.addFlashAttribute("sksError", "SKS kamu tidak boleh lebih dari 24 atau kurang dari 0");
+            isRedirectError = true;
+        }
+
+        if (isRedirectError) {
+            return "redirect:/" + kode_lmk + "/daftar";
+        }
 
         lmkMahasiswa.setStatus("melamar");
         lmkMahasiswa.setMahasiswa(mahasiswaRepository.findFirstByUsername(session.getAttribute("username").toString()));
