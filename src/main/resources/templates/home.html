@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/logout}" method="get">
+    <button type="submit">Logout</button>
+</form>
+<h1>Daftar Lowongan</h1>
+<div>
+    <h1 th:if="${type == 'mahasiswa'}">KAMU ADALAH MAHASISWA</h1>
+    <h1 th:if="${type == 'dosen'}">KAMU ADALAH DOSEN</h1>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Lowongan</th>
+            <th>Dosen Pembuka</th>
+            <th>Status Lowongan</th>
+            <th>Jumlah Lowongan</th>
+            <th>Jumlah Pelamar</th>
+            <th>Jumlah Pelamar Diterima</th>
+            <th>Status Lamaran</th>
+            <th>Daftar/Detail</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="iter : ${list}">
+            <td>1</td>
+            <td th:text="${iter.getLmk().getMataKuliah().nama}"></td>
+            <td th:text="${iter.getDosen()}"></td>
+            <td th:text="${iter.getLmk().status_lowongan}"></td>
+            <td th:text="${iter.getLmk().jumlah_lowongan}"></td>
+            <td th:text="${iter.getLmk().jumlah_pelamar}"></td>
+            <td th:text="${iter.getLmk().jumlah_diterima}"></td>
+            <td th:text="${iter.getStatus()}"></td>
+            <td>
+                <div th:switch="${iter.getStatus()}">
+                    <div th:case="'melamar'">
+                        <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
+                            <button type="submit">Detail</button>
+                        </form>
+                    </div>
+                    <div th:case="''">
+                        <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/daftar'}" method="get">
+                            <button type="submit">Daftar</button>
+                        </form>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

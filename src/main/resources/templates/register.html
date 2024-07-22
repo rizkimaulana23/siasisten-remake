@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Registration</title>
+</head>
+<body>
+    <h1>Register</h1>
+    <form th:action="@{/register}" th:object="${mahasiswa}" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" th:field="*{username}">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}">
+        </div>
+        <div>
+            <label for="npm">NPM:</label>
+            <input type="text" id="npm" th:field="*{npm}">
+        </div>
+        <div>
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" th:field="*{nama}">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}">
+        </div>
+        <div>
+            <label for="no_hp">Nomor handphone:</label>
+            <input type="text" id="no_hp" th:field="*{no_hp}">
+        </div>
+        <div>
+            <label for="status">Status:</label>
+            <input type="text" id="status" th:field="*{status}">
+        </div>
+        <div>
+            <label for="nama-bank">Bank:</label>
+            <input type="text" id="nama-bank" th:field="*{nama_bank}">
+        </div>
+        <div>
+            <label for="no_rek">Nomor rekening:</label>
+            <input type="text" id="no_rek" th:field="*{no_rek}">
+        </div>
+        <div>
+            <label for="nama_rekening">Nama rekening:</label>
+            <input type="text" id="nama_rekening" th:field="*{nama_rekening}">
+        </div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</body>
+</html>

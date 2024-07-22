@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Lowongan Mata Kuliah</title>
+</head>
+<body>
+<h1>Input Lowongan Mata Kuliah</h1>
+    <form th:action="@{/input/lowongan_mata_kuliah}" th:object="${lowongan}" method="post">
+        <div>
+            <label for="mata_kuliah">Mata Kuliah:</label>
+            <input type="text" id="mata_kuliah" name="mataKuliah">
+        </div>
+        <div>
+            <label for="tahun_ajaran">Tahun Ajaran:</label>
+            <select id="tahun_ajaran" th:field="*{periode}">
+                <option value="" disabled>Pilih tahun ajaran</option>
+                <option th:each="iter : ${periode}" th:value="${iter}" th:text="${iter}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="status">Status saat lowongan pertama dibuka:</label>
+            <select id="status" th:field="*{status_lowongan}">
+                <option value="" disabled>Pilih status</option>
+                <option th:each="iter : ${status}" th:value="${iter}" th:text="${iter}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="jumlah_lowongan">Jumlah lowongan:</label>
+            <input type="number" th:field="*{jumlah_lowongan}" id="jumlah_lowongan">
+        </div>
+        <div>
+            <label for="dosen">Dosen Pembuka:</label>
+            <input type="text" id="dosen" name="daftarDosen">
+        </div>
+        <button type="submit">Input</button>
+    </form>
+</body>
+</html>

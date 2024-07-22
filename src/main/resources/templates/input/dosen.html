@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Dosen</title>
+</head>
+<body>
+    <h1>Input Data Dosen Baru</h1>
+    <form th:action="@{/input/dosen}" th:object="${dosen}" method="post">
+        <div>
+            <label for="nid">NID:</label>
+            <input type="number" id="nid" th:field="*{nid}">
+        </div>
+        <div>
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" th:field="*{nama}">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}">
+        </div>
+        <div>
+            <label for="no_hp">Nomor Handphone:</label>
+            <input type="number" id="no_hp" th:field="*{no_hp}">
+        </div>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" th:field="*{username}">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}">
+        </div>
+        <div>
+            <button type="submit">Input</button>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Asdos</title>
+</head>
+<body>
+    <table border="1">
+        <tbody>
+        <tr>
+            <td>Mata Kuliah</td>
+            <td><span th:text="${mataKuliah.getKode_mk()} + ' - ' + ${mataKuliah.getNama()}"></span></td>
+        </tr>
+        <tr>
+            <td>Nama asisten</td>
+            <td th:text="${mahasiswa.getNama()} + '(' + ${mahasiswa.getUsername()} + ')'">"Nama Asisten" ("username")</td>
+        </tr>
+        <tr>
+            <td>
+                <label for="ipk">IPK</label>
+            </td>
+            <td>
+                <input type="text" id="ipk" th:value="${lmkMahasiswa.getIpk()}"  disabled>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="sks">SKS diambil</label>
+            </td>
+            <td>
+                <input type="text" id="sks" th:value="${lmkMahasiswa.getSks()}" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td>Nilai mata kuliah prasyarat pelamar</td>
+            <td>NILAI</td>
+        </tr>
+        <tr>
+            <td>Syarat tambahan</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

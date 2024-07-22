@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Lowongan</title>
+</head>
+<body>
+<form th:action="@{'/' + ${lmk.getKode_lmk()} + '/edit'}" method="post">
+    <div>
+        <label for="mataKuliah">Kode Mata Kuliah:</label>
+        <input type="text" id="mataKuliah" name="kodeMk" th:value="${lmk.getMataKuliah().getKode_mk()}">
+    </div>
+    <div>
+        <label for="tahunAjaran">Tahun Ajaran</label>
+        <input type="text" name="tahunAjaran" id="tahunAjaran" th:value="${lmk.getPeriode().getTahun_ajaran()}">
+    </div>
+    <div>
+        <label for="statusLowongan">Status Lowongan</label>
+        <select id="statusLowongan" name="statusLowongan">
+            <option value="Buka" th:selected="${lmk.getStatus_lowongan() == 'Buka'}">Buka</option>
+            <option value="Tutup" th:selected="${lmk.getStatus_lowongan() == 'Tutup'}">Tutup</option>
+        </select>
+    </div>
+    <div>
+        <label for="jumlahLowongan">Jumlah Lowongan</label>
+        <input type="text" name="jumlahLowongan" id="jumlahLowongan" th:value="${lmk.getJumlah_lowongan()}">
+    </div>
+    <button type="submit">Edit</button>
+</form>
+</body>
+</html>

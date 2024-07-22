@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Mata Kuliah</title>
+</head>
+<body>
+    <h1>Input Mata Kuliah</h1>
+    <form th:action="@{/input/mata_kuliah}" th:object="${mataKuliah}" method="post">
+        <div>
+            <label for="kode_mk">Kode Mata Kuliah:</label>
+            <input type="text" id="kode_mk" th:field="*{kode_mk}">
+        </div>
+        <div>
+            <label for="nama">Nama Mata Kuliah:</label>
+            <input type="text" id="nama" th:field="*{nama}">
+        </div>
+        <button type="submit">Input</button>
+    </form>
+</body>
+</html>

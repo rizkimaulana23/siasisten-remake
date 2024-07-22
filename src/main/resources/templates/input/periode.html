@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Periode</title>
+</head>
+<body>
+  <h1>Input Periode</h1>
+  <form th:action="@{/input/periode}" th:object="${periode}" method="post">
+      <div>
+          <label for="tahun_ajaran">Tahun Ajaran:</label>
+          <input type="text" id="tahun_ajaran" th:field="*{tahun_ajaran}">
+      </div>
+      <button type="submit">Input</button>
+  </form>
+</body>
+</html>

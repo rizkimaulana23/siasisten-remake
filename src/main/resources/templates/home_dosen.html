@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Dosen</title>
+</head>
+<body>
+  <h1>KAMU ADALAH DOSEN</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama Lowongan</th>
+        <th>Dosen Pembuka</th>
+        <th>Status Lowongan</th>
+        <th>Jumlah Lowongan</th>
+        <th>Jumlah Pelamar</th>
+        <th>Jumlah Pelamar Diterima</th>
+        <th>Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="iter, iterStat : ${list}">
+        <td th:text="${iterStat.count}"></td>
+        <td th:text="${iter.getLmk().getMataKuliah().getNama()}"></td>
+        <td th:text="${iter.getDosen()}"></td>
+        <td th:text="${iter.getLmk().getStatus_lowongan()}"></td>
+        <td th:text="${iter.getLmk().getJumlah_lowongan()}"></td>
+        <td th:text="${iter.getLmk().getJumlah_pelamar()}"></td>
+        <td th:text="${iter.getLmk().getJumlah_diterima()}"></td>
+        <td>
+          <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} + '/edit'}" method="get">
+            <button type="submit">Detail</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
