@@ -40,9 +40,9 @@
             <td>
                 <div th:switch="${iter.getStatus()}">
                     <div th:case="'melamar'">
-                        <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
-                            <button type="submit">Detail</button>
-                        </form>
+                            <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
+                                <button type="submit">Detail</button>
+                            </form>
                     </div>
                     <div th:case="'diterima'">
                         <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
@@ -50,17 +50,18 @@
                         </form>
                     </div>
                     <div th:case="'direkomendasikan'">
-                        <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
-                            <button type="submit">Detail</button>
-                        </form>
+                            <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
+                                <button type="submit">Detail</button>
+                            </form>
                     </div>
                     <div th:case="''">
-                        <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/daftar'}" method="get">
-                            <button type="submit">Daftar</button>
-                        </form>
+                        <div th:if="${iter.getLmk().getStatus_lowongan() == 'Buka'}">
+                            <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/daftar'}" method="get">
+                                <button type="submit">Daftar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-
             </td>
         </tr>
     </tbody>
