@@ -8,4 +8,6 @@ import siasisten_remake.demo.entity.Mahasiswa;
 public interface MahasiswaRepository extends JpaRepository<Mahasiswa, String> {
 
     public Mahasiswa findFirstByUsername(String username);
+
+    public Mahasiswa findByNpm(String npm);
 }

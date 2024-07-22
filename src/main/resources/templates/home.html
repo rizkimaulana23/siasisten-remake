@@ -44,6 +44,16 @@
                             <button type="submit">Detail</button>
                         </form>
                     </div>
+                    <div th:case="'diterima'">
+                        <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
+                            <button type="submit">Detail</button>
+                        </form>
+                    </div>
+                    <div th:case="'direkomendasikan'">
+                        <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
+                            <button type="submit">Detail</button>
+                        </form>
+                    </div>
                     <div th:case="''">
                         <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/daftar'}" method="get">
                             <button type="submit">Daftar</button>

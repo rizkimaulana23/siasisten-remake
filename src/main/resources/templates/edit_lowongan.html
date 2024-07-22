@@ -27,5 +27,39 @@
     </div>
     <button type="submit">Edit</button>
 </form>
+
+<form th:action="@{'/' + ${lmk.getKode_lmk()} + '/edit_mahasiswa'}" method="post">
+    <table>
+        <thead>
+            <tr>
+                <th>NPM</th>
+                <th>Nama Mahasiswa</th>
+                <th>IPK</th>
+                <th>SKS</th>
+                <th>
+                    <label for="statusMahasiswa">Status</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="iter, iterStat : ${lmkMahasiswa}">
+                <td th:text="${iter.getMahasiswa().getNpm()}"></td>
+                <td th:text="${iter.getMahasiswa().getNama()}"></td>
+                <td th:text="${iter.getIpk()}"></td>
+                <td th:text="${iter.getSks()}"></td>
+                <td>
+                    <select th:name="|username_${iter.getMahasiswa().getUsername()}|" id="statusMahasiswa">
+                        <option value="melamar" th:selected="${iter.getStatus()} == 'melamar'">Melamar</option>
+                        <option value="direkomendasikan" th:selected="${iter.getStatus()} == 'direkomendasikan'">Direkomendasikan</option>
+                        <option value="diterima" th:selected="${iter.getStatus() == 'diterima'}">Diterima</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button type="submit">Input</button>
+    </div>
+</form>
 </body>
 </html>

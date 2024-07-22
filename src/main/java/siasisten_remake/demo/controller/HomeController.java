@@ -73,11 +73,7 @@ public class HomeController {
             List<LmkMahasiswa> listLmkMahasiswa = lmkMahasiswaRepository
                     .findAllByMahasiswaAndLowonganMataKuliah(mahasiswaRepository.findFirstByUsername(session.getAttribute("username").toString()), iter);
             for (LmkMahasiswa lmkm : listLmkMahasiswa) {
-                if (lmkm.getStatus().equals("melamar")) {
-                    status = "melamar";
-                } else if (lmkm.getStatus().equals("diterima")) {
-                    status = "diterima";
-                }
+                status = lmkm.getStatus();
             }
             daftarstatus.add(status);
         }

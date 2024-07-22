@@ -12,4 +12,6 @@ import java.util.List;
 public interface LmkMahasiswaRepository extends JpaRepository<LmkMahasiswa, Long> {
 
     public List<LmkMahasiswa> findAllByMahasiswaAndLowonganMataKuliah(Mahasiswa mahasiswa, LowonganMataKuliah lowonganMataKuliah);
+
+    public List<LmkMahasiswa> findAllByLowonganMataKuliah(LowonganMataKuliah lowonganMataKuliah);
 }
