@@ -1,6 +1,7 @@
 package siasisten_remake.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import siasisten_remake.demo.entity.LmkMahasiswa;
 import siasisten_remake.demo.entity.LowonganMataKuliah;
 import siasisten_remake.demo.entity.Mahasiswa;
+import siasisten_remake.demo.event.application_event.DiterimaLowonganEvent;
 import siasisten_remake.demo.repository.*;
 
 import java.util.List;
@@ -32,6 +34,9 @@ public class EditLmkController {
 
     @Autowired
     private MahasiswaRepository mahasiswaRepository;
+
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
 
     @GetMapping("/{kode_lmk}/edit")
     public String editLmk(
@@ -99,6 +104,8 @@ public class EditLmkController {
             lmkMahasiswaRepository.save(lmkMahasiswa);
 
         });
+
+        eventPublisher.publishEvent(new DiterimaLowonganEvent(this, kode_lmk));
         return "redirect:/" + kode_lmk + "/edit";
     }
 }

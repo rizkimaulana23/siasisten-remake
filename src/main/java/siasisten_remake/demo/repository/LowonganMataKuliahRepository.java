@@ -33,5 +33,17 @@ public interface LowonganMataKuliahRepository extends JpaRepository<LowonganMata
            """)
     public int updateJumlahPendaftarSetelahPendaftaran(@Param("kode") String kode_lmk);
 
+    @Modifying
+    @Transactional
+    @Query("""
+           UPDATE LowonganMataKuliah l
+           SET l.jumlah_diterima = (
+           SELECT COUNT(*) FROM LmkMahasiswa lm
+           WHERE lm.lowonganMataKuliah.kode_lmk = :kode AND lm.status = 'diterima'
+           )
+           WHERE l.kode_lmk = :kode
+           """)
+    public int updateJumlahDiterimaSetelahPendaftaran(@Param("kode") String kode_lmk);
+
 
 }
