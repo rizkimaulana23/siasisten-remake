@@ -4,50 +4,56 @@
 </head>
 <body>
     <h1>Register</h1>
-    <form th:action="@{/register}" th:object="${mahasiswa}" method="post">
+    <form th:action="@{/register}" th:object="${mahasiswa}" method="post" >
         <div>
             <label for="username">Username:</label>
-            <input type="text" id="username" th:field="*{username}">
+            <input type="text" id="username" th:field="*{username}" required>
         </div>
         <div>
             <label for="password">Password:</label>
-            <input type="password" id="password" th:field="*{password}">
+            <input type="password" id="password" th:field="*{password}" required>
         </div>
         <div>
             <label for="npm">NPM:</label>
-            <input type="text" id="npm" th:field="*{npm}">
+            <input type="text" id="npm" th:field="*{npm}" required>
         </div>
         <div>
             <label for="nama">Nama:</label>
-            <input type="text" id="nama" th:field="*{nama}">
+            <input type="text" id="nama" th:field="*{nama}" required>
         </div>
         <div>
             <label for="email">Email:</label>
-            <input type="email" id="email" th:field="*{email}">
+            <input type="email" id="email" th:field="*{email}" required>
         </div>
         <div>
             <label for="no_hp">Nomor handphone:</label>
-            <input type="text" id="no_hp" th:field="*{no_hp}">
+            <input type="text" id="no_hp" th:field="*{no_hp}" required>
         </div>
         <div>
             <label for="status">Status:</label>
-            <input type="text" id="status" th:field="*{status}">
+            <input type="text" id="status" th:field="*{status}" required>
         </div>
         <div>
             <label for="nama-bank">Bank:</label>
-            <input type="text" id="nama-bank" th:field="*{nama_bank}">
+            <input type="text" id="nama-bank" th:field="*{nama_bank}" required>
         </div>
         <div>
             <label for="no_rek">Nomor rekening:</label>
-            <input type="text" id="no_rek" th:field="*{no_rek}">
+            <input type="text" id="no_rek" th:field="*{no_rek}" required>
         </div>
         <div>
             <label for="nama_rekening">Nama rekening:</label>
-            <input type="text" id="nama_rekening" th:field="*{nama_rekening}">
+            <input type="text" id="nama_rekening" th:field="*{nama_rekening}" required>
         </div>
         <div>
             <button type="submit">Register</button>
         </div>
     </form>
+
+
+    <form th:action="@{/login}">
+        <button type="submit">sudah punya akun ?</button>
+    </form>
+
 </body>
 </html>
