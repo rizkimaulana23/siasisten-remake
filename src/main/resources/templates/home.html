@@ -38,7 +38,7 @@
             <td th:text="${iter.getLmk().jumlah_diterima}"></td>
             <td th:text="${iter.getStatus()}"></td>
             <td>
-                <div th:switch="${iter.getStatus()}">
+                <form th:switch="${iter.getStatus()}" >
                     <div th:case="'melamar'">
                             <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
                                 <button type="submit">Detail</button>
@@ -61,7 +61,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </form>
             </td>
         </tr>
     </tbody>
