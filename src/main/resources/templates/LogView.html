@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        table, th, td { border: 1px solid black; }
+        th, td { padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+<h1>Log Mahasiswa</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID Log</th>
+        <th>Waktu Dibuat</th>
+        <th>Waktu Diubah</th>
+        <th>Durasi</th>
+        <th>Kategori</th>
+        <th>Deskripsi</th>
+        <th>Status</th>
+        <th>Nama Mahasiswa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Menggunakan Thymeleaf untuk menampilkan data -->
+    <tr th:each="log : ${logs}">
+        <td th:text="${log.noLog}">ID Log</td>
+        <td th:text="${log.waktuDibuat}">Waktu Dibuat</td>
+        <td th:text="${log.waktuDiubah}">Waktu Diubah</td>
+        <td th:text="${log.durasi}">Durasi</td>
+        <td th:text="${log.kategori}">Kategori</td>
+        <td th:text="${log.deskripsi}">Deskripsi</td>
+        <td th:text="${log.status}">Status</td>
+        <td th:text="${log.mahasiswa.nama}">Nama Mahasiswa</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

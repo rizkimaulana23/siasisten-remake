@@ -18,7 +18,8 @@ import java.time.LocalDateTime;
 public class Log {
 
     @Id
-    private int no_log;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int noLog; // Ganti no_log menjadi noLog
 
     @ManyToOne
     @JoinColumn(name = "kode_lmk")
@@ -28,7 +29,7 @@ public class Log {
     @JoinColumn(name = "npm")
     private Mahasiswa mahasiswa;
 
-    private LocalDateTime timestamp_log;
+    private LocalDateTime timestampLog; // Ganti timestamp_log menjadi timestampLog
 
     private Duration durasi;
 
@@ -38,7 +39,7 @@ public class Log {
 
     private String status;
 
-    private LocalDateTime waktu_dibuat;
+    private LocalDateTime waktuDibuat; // Ganti waktu_dibuat menjadi waktuDibuat
 
-    private LocalDateTime waktu_diubah;
+    private LocalDateTime waktuDiubah; // Ganti waktu_diubah menjadi waktuDiubah
 }
