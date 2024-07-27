@@ -65,7 +65,7 @@ public class RegistrasiAsdosController {
     }
 
     @PostMapping("/{kode_lmk}/daftar")
-    @After(value = "execution(* siasisten_remake.demo.event.application_listener.DaftarLowonganListener.*(..)) && args(kode_lmk, lmkMahasiswa, session)", argNames = "kode_lmk,lmkMahasiswa,session")
+    @After(value = "execution(* siasisten_remake.demo.event.application_listener.DaftarLowonganListener.*(..)) && args(kode_lmk, lmkMahasiswa, session, redirectAttributes)", argNames = "kode_lmk,lmkMahasiswa,session, redirectAttributes")
     public String daftarAsdosPost(
             @PathVariable String kode_lmk,
             @ModelAttribute LmkMahasiswa lmkMahasiswa,

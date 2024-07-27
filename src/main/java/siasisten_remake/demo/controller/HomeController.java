@@ -98,5 +98,10 @@ public class HomeController {
         }
     }
 
+    @GetMapping("/base")
+    public String base() {
+        return "base";
+    }
+
 
 }
