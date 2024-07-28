@@ -46,11 +46,8 @@
             color: white;
         }
 
-
-
         .navigation div {
-            padding: 20px;
-            border: 2px solid red;
+            padding: 20px;;
         }
 
         .nav-content {
@@ -77,23 +74,27 @@
             width: 126px;
             height: auto;
         }
-
-
+        .logout-image:active {
+            content: url("../static/buttons/logout/logout_hovered.png");
+        }
     </style>
 </head>
 <body>
-    <header></header>
     <nav class="navigation">
         <div class="nav-content">
             <div id="main-logo" class="box1">SIASISTEN</div>
             <div id="sub-main-logo" class="box2">Sistem Informasi Asisten Fasilkom UI</div>
             <div class="box3">
-                <img class="logout-image" alt="bruh" src="../static/buttons/logout/logout_nothovered.png">
+                <img class="logout-image" alt="bruh" src="../static/buttons/logout/logout_nothovered.png" th:src="@{/buttons/logout/logout_hovered.png}">
             </div>
         </div>
     </nav>
-    <div class="content">
-        asdfasdfasd
+    <div class="content" th:fragment="main-body">
+
     </div>
+
+    <footer th:fragment="footer">
+
+    </footer>
 </body>
 </html>
