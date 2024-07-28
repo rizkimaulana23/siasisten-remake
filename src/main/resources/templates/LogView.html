@@ -21,6 +21,7 @@
         <th>Deskripsi</th>
         <th>Status</th>
         <th>Nama Mahasiswa</th>
+        <th>Edit</th>
     </tr>
     </thead>
     <tbody>
@@ -34,8 +35,18 @@
         <td th:text="${log.deskripsi}">Deskripsi</td>
         <td th:text="${log.status}">Status</td>
         <td th:text="${log.mahasiswa.nama}">Nama Mahasiswa</td>
+        <td>
+            <form th:action="@{/editlog}"><button>edit</button></form>
+        </td>
     </tr>
+
     </tbody>
-</table>
+
+    </table>
+
+<form th:action="@{/home}" method="get">
+    <button type="submit">back</button>
+</form>
+
 </body>
 </html>

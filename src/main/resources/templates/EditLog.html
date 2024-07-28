@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<ul>
+    <li th:each="Logdata : ${ListLog}">
+        <input type="text" id="textInput1" value="${LogData}" placeholder="Data Mahasiswa">
+        <input type="text" id="textInput2" value="${LogData}" placeholder="Data Mahasiswa">
+        <input type="text" id="textInput3" value="${LogData}" placeholder="Data Mahasiswa">
+        <input type="text" id="textInput4" value="${LogData}" placeholder="Data Mahasiswa">
+    </li>
+</ul>
+
+
+
+</body>
+</html>
