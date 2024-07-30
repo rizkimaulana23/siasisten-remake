@@ -14,6 +14,7 @@ import siasisten_remake.demo.repository.LogRepository;
 import siasisten_remake.demo.repository.LowonganMataKuliahRepository;
 import siasisten_remake.demo.repository.MahasiswaRepository;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,6 +90,23 @@ public class LogController {
 
     @GetMapping("/seeLog/{kodeLmk}")
     public String seeLog (Model model, HttpSession session, @PathVariable String kodeLmk) {
+        LowonganMataKuliah lmk = lowonganMataKuliahRepository.getLmkUsingKode(kodeLmk);
+
+        List<Log> logList = logRepository.findAllByLowonganMataKuliah(lmk);
+        model.addAttribute("logs", logList);
+
+        DateTimeFormatter durasiFormat = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter tanggalFormat = DateTimeFormatter.ofPattern("dd MMM yyyy");
+
+        model.addAttribute("durasiFormat", durasiFormat);
+        model.addAttribute("tanggalFormat", tanggalFormat);
+        model.addAttribute("kodeLmk", kodeLmk);
+
         return "lihat_log";
+    }
+
+    @GetMapping("/addLog/{kodeLmk}")
+    public String addLog(Model model, HttpSession session) {
+        return "tambah_log";
     }
 }

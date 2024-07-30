@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Lihat Log</title>
 </head>
 <body>
-
+    <div>
+        <form th:action="@{'/log/addLog/' + ${kodeLmk}}" method="get">
+            <button type="submit">Tambah Log</button>
+        </form>
+    </div>
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Tanggal</th>
+            <th>Jam</th>
+            <th>Kategori</th>
+            <th>Deskripsi Tugas</th>
+            <th>Status</th>
+        </tr>
+        <tr th:each="iter, iterStat : ${logs}">
+            <td th:text="${iterStat.count}"></td>
+            <td th:text="${iter.getTimestampLog().format(tanggalFormat)}"></td>
+            <td th:text="${iter.getTimestampLog().format(durasiFormat)}"></td>
+            <td th:text="${iter.getKategori()}"></td>
+            <td th:text="${iter.getDeskripsi()}"></td>
+            <td th:text="${iter.getStatus()}"></td>
+        </tr>
+    </table>
 </body>
 </html>
