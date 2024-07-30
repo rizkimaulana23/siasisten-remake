@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Mata Kuliah Asdos</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Mata Kuliah</th>
+            <th>Semester</th>
+            <th>Tahun Ajaran</th>
+            <th>Dosen</th>
+            <th>Log Asisten</th>
+        </tr>
+        <tr th:each="iter, iterStat : ${mataKuliahAsdos}">
+            <td th:text="${iterStat.count}"></td>
+            <td th:text="${iter.getLowonganMataKuliah().getMataKuliah().getNama()}"></td>
+            <td th:text="${semesterList.get(iterStat.index)}"></td>
+            <td th:text="${tahunAjaranList.get(iterStat.index)}"></td>
+            <td th:text="${dosenList.get(iterStat.index)}"></td>
+            <td>
+                <form th:action="@{'/log/seeLog/' + ${iter.getLowonganMataKuliah().getKode_lmk()}}" method="get">
+                    <button type="submit">
+                        Lihat
+                    </button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

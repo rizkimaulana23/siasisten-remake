@@ -94,15 +94,15 @@ CREATE TABLE lmk_mahasiswa (
 -- Function and Trigger
 
 CREATE OR REPLACE FUNCTION update_jumlah_pelamar_diterima()
-RETURNS TRIGGER AS $$
+    RETURNS TRIGGER AS $$
 BEGIN
-UPDATE lowonganmatakuliah
-SET jumlah_diterima = (
-    SELECT COUNT(*)
-    FROM lmk_mahasiswa
-    WHERE status = 'diterima' AND kode_lmk = OLD.kode_lmk
-)
-WHERE kode_lmk = OLD.kode_lmk;
+    UPDATE lowonganmatakuliah
+    SET jumlah_diterima = (
+        SELECT COUNT(*)
+        FROM lmk_mahasiswa
+        WHERE status = 'diterima' AND kode_lmk = OLD.kode_lmk
+    )
+    WHERE kode_lmk = OLD.kode_lmk;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -112,15 +112,15 @@ CREATE TRIGGER trg_update_jumlah_diterima
 EXECUTE FUNCTION update_jumlah_pelamar_diterima();
 
 CREATE OR REPLACE FUNCTION update_jumlah_pelamar()
-RETURNS TRIGGER AS $$
+    RETURNS TRIGGER AS $$
 BEGIN
-UPDATE lowonganmatakuliah
-SET jumlah_diterima = (
-    SELECT COUNT(*)
-    FROM lmk_mahasiswa
-    WHERE kode_lmk = OLD.kode_lmk
-)
-WHERE kode_lmk = OLD.kode_lmk;
+    UPDATE lowonganmatakuliah
+    SET jumlah_diterima = (
+        SELECT COUNT(*)
+        FROM lmk_mahasiswa
+        WHERE kode_lmk = OLD.kode_lmk
+    )
+    WHERE kode_lmk = OLD.kode_lmk;
 END;
 $$ LANGUAGE plpgsql;
 

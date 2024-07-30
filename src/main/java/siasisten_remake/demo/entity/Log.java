@@ -18,17 +18,21 @@ import java.time.LocalDateTime;
 public class Log {
 
     @Id
-    private int no_log;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "no_log")
+    private int noLog; // Ganti no_log menjadi noLog
 
     @ManyToOne
-    @JoinColumn(name = "kode_lmk")
+    @JoinColumn(name = "kode_lmk", referencedColumnName = "kode_lmk")
     private LowonganMataKuliah lowonganMataKuliah;
 
     @ManyToOne
-    @JoinColumn(name = "npm")
+    @JoinColumn(name = "npm", referencedColumnName = "npm")
     private Mahasiswa mahasiswa;
 
-    private LocalDateTime timestamp_log;
+    @Column(name = "timestamp_log")
+    private LocalDateTime timestampLog;
+
 
     private Duration durasi;
 
@@ -38,7 +42,9 @@ public class Log {
 
     private String status;
 
-    private LocalDateTime waktu_dibuat;
+    @Column(name = "waktu_dibuat")
+    private LocalDateTime waktuDibuat; // Ganti waktu_dibuat menjadi waktuDibuat
 
-    private LocalDateTime waktu_diubah;
+    @Column(name = "waktu_diubah")
+    private LocalDateTime waktuDiubah; // Ganti waktu_diubah menjadi waktuDiubah
 }
