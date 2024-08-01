@@ -20,7 +20,7 @@ public class Log {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "no_log")
-    private int noLog; // Ganti no_log menjadi noLog
+    private int noLog;
 
     @ManyToOne
     @JoinColumn(name = "kode_lmk", referencedColumnName = "kode_lmk")
@@ -33,7 +33,6 @@ public class Log {
     @Column(name = "timestamp_log")
     private LocalDateTime timestampLog;
 
-
     private Duration durasi;
 
     private String kategori;
@@ -43,8 +42,8 @@ public class Log {
     private String status;
 
     @Column(name = "waktu_dibuat")
-    private LocalDateTime waktuDibuat; // Ganti waktu_dibuat menjadi waktuDibuat
+    private LocalDateTime waktuDibuat;
 
     @Column(name = "waktu_diubah")
-    private LocalDateTime waktuDiubah; // Ganti waktu_diubah menjadi waktuDiubah
+    private LocalDateTime waktuDiubah;
 }

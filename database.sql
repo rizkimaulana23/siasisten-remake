@@ -68,7 +68,7 @@ CREATE TABLE log(
                     kode_lmk INTEGER NOT NULL,
                     npm VARCHAR(10) NOT NULL,
                     timestamp_log TIMESTAMP NOT NULL,
-                    durasi INTERVAL NOT NULL,
+                    durasi NUMERIC(21,0) NOT NULL,
                     kategori VARCHAR(100) NOT NULL,
                     deskripsi TEXT,
                     status VARCHAR(100) NOT NULL DEFAULT 'dilaporkan',

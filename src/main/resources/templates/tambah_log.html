@@ -5,7 +5,47 @@
     <title>Tambah Log</title>
 </head>
 <body>
-
     <h1>Tambah Log</h1>
+    <form th:action="@{'/log/addLog/' + ${kodeLmk}}" method="post" th:object="${log}">
+        <div>
+            <label for="kategori">Kategori Log:</label>
+            <select name="kategori" id="kategori" th:field="*{kategori}">
+                <option value="Asistensi/Tutorial">Asistensi/Tutorial</option>
+                <option value="Mengoreksi">Mengoreksi</option>
+                <option value="Mengawas">Mengawas</option>
+                <option value="Persiapan Asistensi">Persiapan Asistensi</option>
+                <option value="Membuat soal/tugas">Membuat soal/tugas</option>
+                <option value="Rapat">Rapat</option>
+                <option value="Sit in Kelas">Sit in Kelas</option>
+                <option value="Pengembangan Materi">Pengembangan Materi</option>
+                <option value="Pengembangan apps">Pengembangan apps</option>
+                <option value="Persiapan infra">Persiapan infra</option>
+                <option value="Dokumentasi"s>Dokumentasi</option>
+                <option value="Persiapan kuliah">Persiapan kuliah</option>
+                <option value="Penunjang">Penunjang</option>
+                <option value="Input Data">Input Data</option>
+            </select>
+        </div>
+        <div>
+            <label for="deskripsi">Deskripsi</label>
+            <input type="text" id="deskripsi" th:field="*{deskripsi}">
+        </div>
+        <div>
+            <label for="tanggal">Tanggal</label>
+            <input type="date" id="tanggal" name="tanggal">
+        </div>
+        <div>
+            <label for="waktu-mulai">Waktu Mulai:</label>
+            <input type="time" id="waktu-mulai" name="waktu_mulai">
+        </div>
+        <div>
+            <label for="waktu-selesai">Waktu Selesai:</label>
+            <input type="time" id="waktu-selesai" step="900" name="waktu_selesai">
+        </div>
+        <div>
+            <button type="submit">Buat Log</button>
+        </div>
+    </form>
+
 </body>
 </html>

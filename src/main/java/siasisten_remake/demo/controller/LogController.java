@@ -5,15 +5,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import siasisten_remake.demo.entity.*;
 import siasisten_remake.demo.repository.LmkMahasiswaRepository;
 import siasisten_remake.demo.repository.LogRepository;
 import siasisten_remake.demo.repository.LowonganMataKuliahRepository;
 import siasisten_remake.demo.repository.MahasiswaRepository;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +39,9 @@ public class LogController {
 
     @GetMapping("/logs")
     public String showLog(Model model) {
-        List<Log> logs = logRepository.findAll(); // Mengambil semua data log
+        List<Log> logs = logRepository.findAll();
         model.addAttribute("logs", logs);
-        return "LogView"; // Nama file HTML di resources/templates
+        return "LogView";
     }
 
     @GetMapping("/mataKuliahAsdos")
@@ -106,7 +108,68 @@ public class LogController {
     }
 
     @GetMapping("/addLog/{kodeLmk}")
-    public String addLog(Model model, HttpSession session) {
+    public String addLog(
+            Model model,
+            HttpSession session,
+            @PathVariable String kodeLmk) {
+        model.addAttribute("log", new Log());
+        model.addAttribute("kodeLmk", kodeLmk);
         return "tambah_log";
+    }
+
+    @PostMapping("/addLog/{kodeLmk}")
+    public String processNewLog(
+            HttpSession session,
+            @PathVariable String kodeLmk,
+            @RequestParam(name = "waktu_mulai") String waktu_mulai,
+            @RequestParam(name = "waktu_selesai") String waktu_selesai,
+            @RequestParam(name = "tanggal") String tanggal,
+            @ModelAttribute Log log_model
+    ) {
+        DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatWaktu = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDate date = LocalDate.parse(tanggal, formatTanggal);
+
+        waktu_mulai = waktu_mulai + ":00";
+        waktu_selesai= waktu_selesai + ":00";
+        LocalTime timeMulai = LocalTime.parse(waktu_mulai, formatWaktu);
+        LocalTime timeSelesai = LocalTime.parse(waktu_selesai, formatWaktu);
+
+        if(timeMulai.isAfter(timeSelesai)) {
+            timeSelesai = timeSelesai.plusHours(24);
+        }
+
+        // Kategori dan deskripsi sudah di-set sebelumnya
+
+        // Set timestamp log
+        LocalDateTime tanggalLocalDateTime = LocalDateTime.of(date, timeMulai);
+        log_model.setTimestampLog(tanggalLocalDateTime);
+
+        // Set durasi
+        Duration durationBaru = Duration.between(timeMulai, timeSelesai);
+        log_model.setDurasi(durationBaru);
+
+        // Set lowongan mata kuliah
+        LowonganMataKuliah lmk = lowonganMataKuliahRepository.getLmkUsingKode(kodeLmk);
+        log_model.setLowonganMataKuliah(lmk);
+
+        // Set mahasiswa
+        Mahasiswa mahasiswa = mahasiswaRepository.findFirstByUsername(session.getAttribute("username").toString());
+        log_model.setMahasiswa(mahasiswa);
+
+        // Set waktu dibuat dan waktu diubah
+        log_model.setWaktuDibuat(LocalDateTime.now());
+        log_model.setWaktuDiubah(LocalDateTime.now());
+
+        // Set status (secara default)
+        log_model.setStatus("dilaporkan");
+
+        logRepository.save(log_model);
+
+        log.info("Model Log didapatkan");
+        log.info("Timestamp Log " + tanggal);
+        log.info("Waktu Mulai " + waktu_mulai);
+        log.info("Waktu Selesai " + waktu_selesai);
+        return "redirect:/log/seeLog/" + kodeLmk;
     }
 }
