@@ -111,6 +111,23 @@
             align-items: center;  /* Center text vertically */
         }
 
+        #main-table {
+            background-color: #5B5B5B;
+            text-align: center;
+            border-color: white;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        .tombol-home {
+            width: 70px;
+            height: auto;
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -146,11 +163,7 @@
 </nav>
 <div class="content" th:fragment="main-body">
     <h1>Daftar Lowongan</h1>
-    <div>
-        <h1 th:if="${type == 'mahasiswa'}">KAMU ADALAH MAHASISWA</h1>
-        <h1 th:if="${type == 'dosen'}">KAMU ADALAH DOSEN</h1>
-    </div>
-    <table>
+    <table class="table-dark table-bordered align-middle" id="main-table">
         <thead>
         <tr>
             <th>No</th>
@@ -178,23 +191,23 @@
                 <div th:switch="${iter.getStatus()}">
                     <div th:case="'melamar'">
                         <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
-                            <button type="submit">Detail</button>
+                            <input class="tombol-home" type="image" alt="detail" name="submit" src="../static/buttons/home_detail.png" th:src="@{/static/buttons/home_detail.png}">
                         </form>
                     </div>
                     <div th:case="'diterima'">
                         <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
-                            <button type="submit">Detail</button>
+                            <input class="tombol-home" type="image" alt="detail" name="submit" src="../static/buttons/home_detail.png" th:src="@{/static/buttons/home_detail.png}">
                         </form>
                     </div>
                     <div th:case="'direkomendasikan'">
                         <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/detail'}" method="get">
-                            <button type="submit">Detail</button>
+                            <input class="tombol-home" type="image" alt="detail" name="submit" src="../static/buttons/home_detail.png" th:src="@{/static/buttons/home_detail.png}">
                         </form>
                     </div>
                     <div th:case="''">
                         <div th:if="${iter.getLmk().getStatus_lowongan() == 'Buka'}">
                             <form th:action="@{'/' + ${iter.getLmk().getKode_lmk()} +  '/daftar'}" method="get">
-                                <button type="submit">Daftar</button>
+                                <input class="tombol-home" type="image" alt="detail" name="submit" src="../static/buttons/home_daftar.png" th:src="@{/static/buttons/home_daftar.png}">
                             </form>
                         </div>
                     </div>
@@ -203,9 +216,6 @@
         </tr>
         </tbody>
     </table>
-    <form th:action="@{/logs}" method="get">
-        <button type="submit">log</button>
-    </form>
 </div>
 
 <footer th:fragment="footer">
