@@ -1,39 +1,232 @@
+
+
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Input Dosen</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        nav {
+            font-family: "Poppins", sans-serif;
+            background-color: #009CFF;
+        }
+
+        #main-logo {
+            font-size: 92px;
+            font-weight: 800;
+            margin-top: -50px;
+            margin-bottom: -75px;
+        }
+
+        #sub-main-logo {
+            font-size: 27px;
+            font-weight: 800;
+            margin-bottom: -30px;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .content {
+            background-color: #131313;
+            flex-grow: 1;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 17px;
+            color: white;
+        }
+
+        .navigation div {
+            padding: 20px;
+        }
+
+        .nav-content {
+            display: grid;
+            grid-template-columns: 7fr 1fr;
+        }
+
+        .box1 {
+            grid-column: 1; /* First column */
+            grid-row: 1; /* First row */
+        }
+
+        .box2 {
+            grid-column: 1; /* First column */
+            grid-row: 2; /* Second row */
+        }
+
+        .box3 {
+            grid-column: 2; /* Second column */
+            grid-row: 1 / 3;
+        }
+
+        .logout-image {
+            width: 126px;
+            height: auto;
+        }
+
+        .button-navigation {
+            padding-right: 40px;
+            padding-left: 20px;
+            display: flex;
+            background-color: #014672;
+            color:white;
+        }
+
+        .button-navigation button{
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .button-navigation div {
+            padding: 10px 20px;
+        }
+
+        .button-navigation div:active {
+            background-color: #FF6501;
+        }
+
+        .transparent-button {
+            width: 100%;  /* Fill the entire width of the parent div */
+            height: 100%;  /* Fill the entire height of the parent div */
+            background: none;  /* Remove default background */
+            border: none;  /* Remove default border */
+            color: inherit;  /* Inherit text color from parent */
+            font-size: inherit;  /* Inherit font size from parent */
+            cursor: pointer;  /* Pointer cursor on hover */
+            display: flex;  /* Flexbox for centering text */
+            justify-content: center;  /* Center text horizontally */
+            align-items: center;  /* Center text vertically */
+        }
+
+        .input-group {
+            width:300px;
+            height: 42px;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+        label {
+            font-size: 25px;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Input Data Dosen Baru</h1>
+<nav class="navigation">
+    <div class="nav-content">
+        <div id="main-logo" class="box1">SIASISTEN</div>
+        <div id="sub-main-logo" class="box2">Sistem Informasi Asisten Fasilkom UI</div>
+        <div class="box3">
+            <form th:action="@{/logout}" method="get">
+                <input type="image" class="logout-image" alt="Logout Button" name="submit" src="../static/buttons/logout/logouthovered.png" th:src="@{/static/buttons/logout/logout_nothovered.png}">
+            </form>
+        </div>
+    </div>
+</nav>
+<nav>
+    <div class="button-navigation">
+        <form th:action="@{/log/mataKuliahAsdos}" method="get">
+            <div id="lowongan-nav">
+                <button class="transparent-button" type="submit">Lowongan </button>
+            </div>
+        </form>
+        <form th:action="@{/log/mataKuliahAsdos}" method="get">
+            <div id="log-nav">
+                <button class="transparent-button" type="submit">Log</button>
+            </div>
+        </form>
+        <form th:action="@{/home}" method="get">
+            <div id="honor-nav">
+                <button class="transparent-button" type="submit">Honor dan Pembayaran</button>
+            </div>
+        </form>
+    </div>
+</nav>
+<div class="content" th:fragment="main-body">
+    <div style="font-size: 40px; font-weight: 800; margin-bottom: 20px">
+        Input Dosen
+    </div>
     <form th:action="@{/input/dosen}" th:object="${dosen}" method="post">
+        <table class="table-dark" style="margin-bottom: 10px">
+            <tr>
+                <td>
+                    <label for="nid">NID:</label>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" id="nid" class="form-control" th:field="*{nid}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="nama">Nama:</label>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" id="nama" class="form-control" th:field="*{nama}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Email:</label>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="email" id="email" class="form-control" th:field="*{email}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="no_hp">Nomor Handphone:</label>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" id="no_hp" th:field="*{no_hp}" class="form-control">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="username">Username:</label>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" id="username" th:field="*{username}" class="form-control">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="password">Password:</label>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="password" id="password" th:field="*{password}" class="form-control">
+                    </div>
+                </td>
+            </tr>
+        </table>
         <div>
-            <label for="nid">NID:</label>
-            <input type="number" id="nid" th:field="*{nid}">
-        </div>
-        <div>
-            <label for="nama">Nama:</label>
-            <input type="text" id="nama" th:field="*{nama}">
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" th:field="*{email}">
-        </div>
-        <div>
-            <label for="no_hp">Nomor Handphone:</label>
-            <input type="number" id="no_hp" th:field="*{no_hp}">
-        </div>
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" th:field="*{username}">
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" th:field="*{password}">
-        </div>
-        <div>
-            <button type="submit">Input</button>
+            <input type="image" name="submit" alt="submit" src="/static/buttons/submit/submit_notpressed.png" th:src="@{/static/buttons/submit/submit_notpressed.png}" style="width: 85px">
         </div>
     </form>
+</div>
 </body>
 </html>
