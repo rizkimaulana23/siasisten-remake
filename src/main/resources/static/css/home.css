@@ -1,0 +1,14 @@
+#main-table {
+    background-color: #5B5B5B;
+    text-align: center;
+    border-color: white;
+}
+
+th, td {
+    padding: 10px;
+}
+
+.tombol-home {
+    width: 70px;
+    height: auto;
+}

@@ -16,4 +16,6 @@ public interface LmkMahasiswaRepository extends JpaRepository<LmkMahasiswa, Long
     public List<LmkMahasiswa> findAllByLowonganMataKuliah(LowonganMataKuliah lowonganMataKuliah);
 
     public List<LmkMahasiswa> findAllByMahasiswa(Mahasiswa mahasiswa);
+
+    public List<LmkMahasiswa> findAllByMahasiswaAndStatus(Mahasiswa mahasiswa, String status);
 }

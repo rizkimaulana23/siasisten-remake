@@ -48,7 +48,7 @@ public class LogController {
     public String mataKuliahAsdosDiterima(Model model, HttpSession session) {
 
         Mahasiswa mahasiswa = mahasiswaRepository.findFirstByUsername(session.getAttribute("username").toString());
-        List<LmkMahasiswa> lmkMahasiswaList = lmkMahasiswaRepository.findAllByMahasiswa(mahasiswa);
+        List<LmkMahasiswa> lmkMahasiswaList = lmkMahasiswaRepository.findAllByMahasiswaAndStatus(mahasiswa, "diterima");
 
         List<String> semesterList = new ArrayList<>();
         List<String> tahunAjaranList = new ArrayList<>();
@@ -93,6 +93,7 @@ public class LogController {
     @GetMapping("/seeLog/{kodeLmk}")
     public String seeLog (Model model, HttpSession session, @PathVariable String kodeLmk) {
         LowonganMataKuliah lmk = lowonganMataKuliahRepository.getLmkUsingKode(kodeLmk);
+        MataKuliah mataKuliah = lmk.getMataKuliah();
 
         List<Log> logList = logRepository.findAllByLowonganMataKuliah(lmk);
         model.addAttribute("logs", logList);
@@ -103,6 +104,7 @@ public class LogController {
         model.addAttribute("durasiFormat", durasiFormat);
         model.addAttribute("tanggalFormat", tanggalFormat);
         model.addAttribute("kodeLmk", kodeLmk);
+        model.addAttribute("mataKuliah", mataKuliah);
 
         return "lihat_log";
     }
